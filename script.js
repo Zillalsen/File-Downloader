@@ -4,6 +4,7 @@ let button = document.querySelector("form button");
 button.addEventListener("click", (e) => {
   e.preventDefault();
   fetchFile(input.value);
+  input.value = "";
 });
 
 function fetchFile(url) {
