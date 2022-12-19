@@ -3,6 +3,7 @@ let button = document.querySelector("form button");
 
 button.addEventListener("click", (e) => {
   e.preventDefault();
+    button.innerText = "Downloading file...";
   fetchFile(input.value);
   input.value = "";
 });
@@ -18,8 +19,12 @@ function fetchFile(url) {
       let aTag = document.createElement("a");
       aTag.href = fileUrl; // passing the file url to the href attribute
       document.body.appendChild(aTag); // append the <a> tag in the body
-      aTag.download = "filename"; // passing filename as download value
+      aTag.download = "downloded"; // passing filename as download value
       aTag.click(); // download the file on click
+          URL.revokeObjectURL(tempUrl);
       aTag.remove(); // remove the 'a' tag after downloading
+    }).catch(() => {
+      alert("Failed to download file!");
+      button.innerText = "Download File";
     });
 }
